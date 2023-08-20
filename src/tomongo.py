@@ -18,9 +18,9 @@ class ToMongo(Base):
     
     def __init__(self):
         # Load the env variables:
-        self.__mongo_url = os.getenv('MONGO_URL')
+        # self.__mongo_url = os.getenv('MONGO_URL')
         #Connect to PyMongo
-        self.client = pymongo.MongoClient(self.__mongo_url)
+        self.client = pymongo.MongoClient("mongodb+srv://addsev:Basic1234@cluster0.t1yof7a.mongodb.net/?retryWrites=true&w=majority")
         # Create a database
         self.db = self.client.db
         # Create a collection:
