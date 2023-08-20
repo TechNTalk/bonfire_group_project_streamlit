@@ -14,14 +14,14 @@ class ToMongo(Base):
     delete_collection: drops an entire collection of data
     '''
     
-    def __init__(self, user=os.getenv('USERNAME'), password=os.getenv('PASSWORD')):
+    def __init__(self, __user=os.getenv('USERNAME'), __password=os.getenv('PASSWORD')):
         # Load the env variables:
         load_dotenv()
-        self.user = user
-        self.password = password
-        self.mongo_url = os.getenv('MONGO_URL')
+        self.user = __user
+        self.password = __password
+        self.__mongo_url = os.getenv('MONGO_URL')
         #Connect to PyMongo
-        self.client = pymongo.MongoClient(self.mongo_url)
+        self.client = pymongo.MongoClient(self.__mongo_url)
         # Create a database
         self.db = self.client.db
         # Create a collection:
@@ -30,7 +30,7 @@ class ToMongo(Base):
         
     def upload_collection(self):
         self.park_info.insert_many([self.df.to_dict()])
-    
+
     def upload_one_by_one(self):
         self.park_info.drop()
         

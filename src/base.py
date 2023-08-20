@@ -9,20 +9,23 @@ import numpy as np
 load_dotenv()
 
 class Base:
+    __key = os.getenv("KEY")
     
+
     def __init__(self):
         self.api_url = "https://developer.nps.gov/api/v1/parks?limit=500"
         self.get_data()
         self.clean_data()
+    
+    
 
     def return_url(self):
         return self.api_url
     
-    def get_data(self, password=os.getenv('API_KEY')):
-        self.password = password
+    def get_data(self):
         endpoint = "https://developer.nps.gov/api/v1/parks?limit=500"
-        HEADERS = {"X-Api-Key":password}
-        req = urllib.request.Request(endpoint,headers=HEADERS)
+        __HEADERS = {"X-Api-Key":self.__key}
+        req = urllib.request.Request(endpoint,headers=__HEADERS)
         response = urllib.request.urlopen(req)
         data = response.read()
 
@@ -83,11 +86,10 @@ class Base:
     
     @staticmethod
     def column_fix(df,column,name='name'):
-        for i in range(len(df[column])):
-            a_list = []
-            for e in range(len(df[column][i])):
-                a_list.append(df[column][i][e][name])
-            df[column][i] = a_list
+        df[column] = [
+            [df[column][i][e][name] for e in range(len(df[column][i]))]
+            for i in range(len(df[column]))
+            ]
     
 if __name__ == '__main__':
     c = Base()
