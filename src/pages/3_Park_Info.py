@@ -18,7 +18,7 @@ import numpy as np
 filepath = os.path.join(Path(__file__).parents[1])
 sys.path.insert(0, filepath)
 import myfuncs as mf
-from tomongo import ToMongo
+from template_mongo import ToMongo
 from collections import OrderedDict
 c=ToMongo()
 cursor=c.park_info.find()
@@ -32,8 +32,11 @@ if select:
     
     for i in range(len(df['full_name'])):
         if select == df['full_name'][i]:
-            link = (df['images'][i][0])
+            link = (df['images'][i])
             index = i
+    ran_num = np.random.randint(0, len(df['images'][index]))
+    st.image(link[ran_num]['url'], caption=link[ran_num]['caption'])
+             
     st.image(link['url'],caption=link['caption'])   
     st.subheader('About The Park:')
     st.write(df['description'][index])
