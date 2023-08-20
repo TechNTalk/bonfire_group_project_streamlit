@@ -30,8 +30,10 @@ class ToMongo(Base):
         
     def upload_collection(self):
         self.park_info.insert_many([self.df.to_dict()])
-
+    
     def upload_one_by_one(self):
+        self.park_info.drop()
+        
         Base.__init__(self)
         self.df.set_index('id', inplace=True)
         for i in self.df.index:

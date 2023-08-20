@@ -6,6 +6,8 @@ import os
 from requests.auth import HTTPBasicAuth
 import numpy as np
 
+load_dotenv()
+
 class Base:
     
     def __init__(self):
@@ -16,9 +18,10 @@ class Base:
     def return_url(self):
         return self.api_url
     
-    def get_data(self):
+    def get_data(self, password=os.getenv('API_KEY')):
+        self.password = password
         endpoint = "https://developer.nps.gov/api/v1/parks?limit=500"
-        HEADERS = {"X-Api-Key":"MaZ16lVPrACD0SRrDzdvkKxR8yoU2RGVXoig65Mf"}
+        HEADERS = {"X-Api-Key":password}
         req = urllib.request.Request(endpoint,headers=HEADERS)
         response = urllib.request.urlopen(req)
         data = response.read()
