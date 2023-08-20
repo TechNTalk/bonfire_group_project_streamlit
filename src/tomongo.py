@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 import pymongo
 import os
 
+load_dotenv()
+
 # Class Declaration:
 class ToMongo(Base):
     '''
@@ -14,11 +16,8 @@ class ToMongo(Base):
     delete_collection: drops an entire collection of data
     '''
     
-    def __init__(self, __user=os.getenv('USERNAME'), __password=os.getenv('PASSWORD')):
+    def __init__(self):
         # Load the env variables:
-        load_dotenv()
-        self.user = __user
-        self.password = __password
         self.__mongo_url = os.getenv('MONGO_URL')
         #Connect to PyMongo
         self.client = pymongo.MongoClient(self.__mongo_url)
