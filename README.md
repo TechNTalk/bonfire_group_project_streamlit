@@ -1,3 +1,3 @@
 # bonfire_group_project_streamlit
 
-[](https://np-info.streamlit.app/)
+[Link to Streamlit App](https://np-info.streamlit.app/)
