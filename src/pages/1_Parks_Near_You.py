@@ -8,7 +8,7 @@ import sys
 filepath=os.path.join(Path(__file__).parents[1])
 sys.path.insert(0, filepath)
 
-from template_mongo import ToMongo
+from tomongo import ToMongo
 import myfuncs as mf
 c=ToMongo()
 

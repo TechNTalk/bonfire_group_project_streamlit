@@ -7,7 +7,7 @@ import pandas as pd
 filepath = os.path.join(Path(__file__).parents[1])
 sys.path.insert(0,filepath)
 
-from template_mongo import ToMongo
+from tomongo import ToMongo
 import myfuncs as mf
 # Creating the ToMongo Class and pinging the data from the MongoDB
 c=ToMongo()

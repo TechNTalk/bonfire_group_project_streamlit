@@ -18,7 +18,7 @@ import numpy as np
 filepath = os.path.join(Path(__file__).parents[1])
 sys.path.insert(0, filepath)
 import myfuncs as mf
-from template_mongo import ToMongo
+from tomongo import ToMongo
 from collections import OrderedDict
 c=ToMongo()
 cursor=c.park_info.find()
